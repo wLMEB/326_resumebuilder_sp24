@@ -1,0 +1,56 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "Team Name",
+    "email": "",
+    "url": "https://github.com/wLMEB/326_resumebuilder_sp24"
+  },
+  "contributors": [
+    {
+      "name": "Viral Rathod",
+      "email": "vrrathod@umass.edu",
+      "github": "viralrathod10"
+    },
+    {
+      "name": "Team Member 2",
+      "email": "team.member2@example.com",
+      "github": "githubusername2"
+    },{
+      "name": "Team Member 3",
+      "email": "team.member1@example.com",
+      "github": "githubusername1"
+    },
+    {
+      "name": "Team Member 4",
+      "email": "team.member2@example.com",
+      "github": "githubusername2"
+    }
+  ],
+  "scripts": {
+    "dev": "",
+    "test": ""
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}
