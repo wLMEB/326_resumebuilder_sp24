@@ -41,3 +41,39 @@ function hideBios(){
 }
 
 
+const overview = document.getElementById('overview');
+const application = document.getElementById('application-parts');
+const data = document.getElementById('data-requirements');
+const wireframes = document.getElementById('wire-frames');
+const real = document.getElementById('real-world');
+const IE = document.getElementById('IE');
+
+
+function count(element){
+    let inner = element.innerHTML;
+
+    inner = inner.substring(inner.indexOf('<p>')+3, inner.indexOf('</p>'));
+    const regex = /<[^>]*>/g;
+    inner = inner.replace(regex, "");
+    //console.log(inner);
+    inner = inner.split(' ');
+    let count = inner.length;
+    element.appendChild(document.createElement('p')).innerHTML = `Word Count: ${count}`;
+}
+function removeEventListener(element){
+   // console.log(element.lastChild)
+    element.removeChild(element.lastChild)
+}
+overview.addEventListener('mouseover',()=>{count(overview)});
+overview.addEventListener('mouseout',()=>{removeEventListener(overview)});
+application.addEventListener('mouseover',()=>{count(application)});
+application.addEventListener('mouseout',()=>{removeEventListener(application)});
+data.addEventListener('mouseover',()=>{count(data)});
+data.addEventListener('mouseout',()=>{removeEventListener(data)});
+wireframes.addEventListener('mouseover',()=>{count(wireframes)});
+wireframes.addEventListener('mouseout',()=>{removeEventListener(wireframes)});
+real.addEventListener('mouseover',()=>{count(real)});
+real.addEventListener('mouseout',()=>{removeEventListener(real)});
+IE.addEventListener('mouseover',()=>{count(IE)});
+IE.addEventListener('mouseout',()=>{removeEventListener(IE)});
+
