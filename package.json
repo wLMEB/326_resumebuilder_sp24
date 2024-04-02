@@ -29,9 +29,9 @@
       "github": "viralrathod10"
     },
     {
-      "name": "Team Member 2",
-      "email": "team.member2@example.com",
-      "github": "githubusername2"
+      "name": "Wanqi Li",
+      "email": "wanli@umass.edu",
+      "github": "wLMEB"
     },{
       "name": "Team Member 3",
       "email": "team.member1@example.com",
@@ -45,7 +45,8 @@
   ],
   "scripts": {
     "dev": "",
-    "test": ""
+    "test": "",
+    "milestone-01": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s"
   },
   "dependencies": {
 
