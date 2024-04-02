@@ -32,7 +32,8 @@
       "name": "Wanqi Li",
       "email": "wanli@umass.edu",
       "github": "wLMEB"
-    },{
+    },
+    {
       "name": "Team Member 3",
       "email": "team.member1@example.com",
       "github": "githubusername1"
@@ -50,10 +51,9 @@
     "validate-html": "html-validate src/**/*.html",
     "prettier": "prettier src —write"
   },
-  "dependencies": {
-
-  },
   "devDependencies": {
-
+    "html-validate": "^8.18.1",
+    "http-server": "^14.1.1",
+    "prettier": "^3.2.5"
   }
 }
