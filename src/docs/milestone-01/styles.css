@@ -5,13 +5,23 @@
 }
 
 p {
-    font-size: 14pt;
+    font-size: 12pt;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+section {
+    margin: 50px;
 }
 
 nav {
     background-color: rgb(150, 150, 150);
     text-align: center;
     margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
     & > a{
         background-color: rgb(150, 150, 150);
         font-size: 12pt;
@@ -26,6 +36,19 @@ nav {
 
 #vision {
     text-align: center;
+}
+
+#team {
+    text-align: center;
+    align-items: center;
+    margin-top: 50px;
+    & > .expand-bio {
+        font-size: 12pt;
+        text-align: left;
+    }
+    & > p {
+        font-size: 14pt;
+    }
 }
 
 

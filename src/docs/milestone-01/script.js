@@ -8,10 +8,10 @@ const wlBio = document.createElement("p");
 const ljBio = document.createElement("p");
 const nlBio = document.createElement("p");
 
-// vrBio.classList.add("expand-bio");
-// wlBio.classList.add("expand-bio");
-// ljBio.classList.add("expand-bio");
-// nlBio.classList.add("expand-bio");
+vrBio.classList.add("expand-bio");
+wlBio.classList.add("expand-bio");
+ljBio.classList.add("expand-bio");
+nlBio.classList.add("expand-bio");
 
 vrBio.innerHTML = "Viral Rathod: I am a sophomore that is familiar with frontend development and have worked with web applications as well as several mobile apps. I am interested in working with the user experience but able to contribute to the backend as well.";
 wlBio.innerHTML = "Wanqi Li: Hello, I'm a Junior at Umass Amherst. My interest lies in computer systems and databases. I'm looking forward to learning how to incorporate databases into web applications to serve as the backend. ";
