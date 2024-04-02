@@ -57,12 +57,23 @@ function count(element){
     inner = inner.replace(regex, "");
     console.log(inner);
     inner = inner.split(' ');
-    console.log(inner.length);
+    let count = inner.length;
+    element.appendChild(document.createElement('p')).innerHTML = `Word Count: ${count}`;
 }
-
+function removeEventListener(element){
+    console.log(element.lastChild)
+    element.removeChild(element.lastChild)
+}
 overview.addEventListener('mouseover',()=>{count(overview)});
+overview.addEventListener('mouseout',()=>{removeEventListener(overview)});
 application.addEventListener('mouseover',()=>{count(application)});
+application.addEventListener('mouseout',()=>{removeEventListener(application)});
 data.addEventListener('mouseover',()=>{count(data)});
+data.addEventListener('mouseout',()=>{removeEventListener(data)});
 wireframes.addEventListener('mouseover',()=>{count(wireframes)});
+wireframes.addEventListener('mouseout',()=>{removeEventListener(wireframes)});
 real.addEventListener('mouseover',()=>{count(real)});
+real.addEventListener('mouseout',()=>{removeEventListener(real)});
 IE.addEventListener('mouseover',()=>{count(IE)});
+IE.addEventListener('mouseout',()=>{removeEventListener(IE)});
+
