@@ -1,0 +1,31 @@
+* {
+    font-family: monospace;
+    background-color: rgb(32, 32, 32);
+    color: rgb(216, 216, 216);
+}
+
+p {
+    font-size: 14pt;
+}
+
+nav {
+    background-color: rgb(125, 125, 125);
+    text-align: center;
+    & > a{
+        background-color: rgb(125, 125, 125);
+        font-size: 14pt;
+        margin: 5px;
+        color: black;
+        &:hover {
+            color: white;
+            background-color: black;
+        }
+    }
+}
+
+#vision {
+    text-align: center;
+}
+
+
+
