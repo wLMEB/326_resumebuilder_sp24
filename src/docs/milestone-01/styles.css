@@ -9,12 +9,13 @@ p {
 }
 
 nav {
-    background-color: rgb(125, 125, 125);
+    background-color: rgb(150, 150, 150);
     text-align: center;
+    margin-top: 20px;
     & > a{
-        background-color: rgb(125, 125, 125);
-        font-size: 14pt;
-        margin: 5px;
+        background-color: rgb(150, 150, 150);
+        font-size: 12pt;
+        margin: 10px;
         color: black;
         &:hover {
             color: white;
