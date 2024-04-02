@@ -55,13 +55,13 @@ function count(element){
     inner = inner.substring(inner.indexOf('<p>')+3, inner.indexOf('</p>'));
     const regex = /<[^>]*>/g;
     inner = inner.replace(regex, "");
-    console.log(inner);
+    //console.log(inner);
     inner = inner.split(' ');
     let count = inner.length;
     element.appendChild(document.createElement('p')).innerHTML = `Word Count: ${count}`;
 }
 function removeEventListener(element){
-    console.log(element.lastChild)
+   // console.log(element.lastChild)
     element.removeChild(element.lastChild)
 }
 overview.addEventListener('mouseover',()=>{count(overview)});
