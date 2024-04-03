@@ -46,7 +46,7 @@ const application = document.getElementById('application-parts');
 const data = document.getElementById('data-requirements');
 const wireframes = document.getElementById('wire-frames');
 const real = document.getElementById('real-world');
-const IE = document.getElementById('IE');
+const IE = document.getElementById('integrative-experience');
 
 
 function count(element){
