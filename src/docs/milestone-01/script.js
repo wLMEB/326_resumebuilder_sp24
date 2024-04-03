@@ -52,10 +52,10 @@ const IE = document.getElementById('integrative-experience');
 function count(element){
     let inner = element.innerHTML;
 
-    inner = inner.substring(inner.indexOf('<p>')+3, inner.indexOf('</p>'));
+    inner = inner.substring(inner.indexOf('<p>')+3, inner.length-4);
     const regex = /<[^>]*>/g;
-    inner = inner.replace(regex, "");
-    //console.log(inner);
+    inner = inner.replace(regex, '');
+    console.log(inner);
     inner = inner.split(' ');
     let count = inner.length;
     element.appendChild(document.createElement('p')).innerHTML = `Word Count: ${count}`;
