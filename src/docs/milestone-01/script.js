@@ -54,7 +54,7 @@ function count(element){
 
     inner = inner.substring(inner.indexOf('<p>')+3, inner.length-4);
     const regex = /<[^>]*>/g;
-    inner = inner.replace(regex, "");
+    inner = inner.replace(regex, '');
     console.log(inner);
     inner = inner.split(' ');
     let count = inner.length;
