@@ -1,3 +1,1 @@
-const test = document.getElementById("testingHeader")
-
-test.innerHTML = "Test"
+const content = document.getElementById('content');

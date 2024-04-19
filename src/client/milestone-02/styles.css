@@ -1,0 +1,22 @@
+#webPageHeader {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+
+#logoBar{
+    text-align: right;
+    top: 0;
+    left: 0;
+    width:15%;
+    margin: 20px;
+    display: inline-block;
+}
+
+#headerMsg{
+    text-align: center;
+    display: inline-block;
+}
