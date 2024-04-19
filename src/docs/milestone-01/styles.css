@@ -65,7 +65,13 @@ nav {
         font-size: 14pt;
     }
 }
-
+#pictures {
+    display: flex;
+    justify-content: center;
+    img {
+        margin: 10px;
+    }
+}
 .verticalContainer{
     display: flex;
     flex-direction: column;
