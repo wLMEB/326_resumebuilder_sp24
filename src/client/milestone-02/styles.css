@@ -1,14 +1,15 @@
 #webPageHeader {
     display: flex;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     
 }
-
+#dropDownMenu{
+    display: inline-block;
+}
 #logoBar{
-    text-align: right;
+    text-align: center;
     top: 0;
     left: 0;
     width:15%;
@@ -19,4 +20,8 @@
 #headerMsg{
     text-align: center;
     display: inline-block;
+}
+.content{
+    align-items: center;
+  justify-content: center;
 }
