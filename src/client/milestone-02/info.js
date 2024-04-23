@@ -35,8 +35,9 @@ function render(){              //render function called by other pages to rende
     fields.forEach(field => fieldGen(field));
     addButton("back", "landingView", ()=>null);
     addButton("submit" , "templateView", ()=>{
-                                    tempRender();
                                     storingTODB();
+                                    tempRender();
+                                    
                                 });
     console.log("Rendered");
 }
