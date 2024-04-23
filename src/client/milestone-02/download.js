@@ -1,11 +1,13 @@
 import { navigate } from "./main.js";
-import { render as tempRender } from "./temp.js";
+import { render as tempRender, getSelectedFields } from "./temp.js";
+
 
 const content = document.getElementById('downloadView');
 
 function render(){ //render function called by other pages to render this page
     content.innerHTML = "";
     content.textContent = "to be implemented for downloading"
+    console.log(getSelectedFields());
     content.appendChild(document.createElement("br"));
     addButton("back","templateView", tempRender);
 }
