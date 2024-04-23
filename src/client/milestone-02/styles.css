@@ -21,6 +21,13 @@
     text-align: center;
     display: inline-block;
 }
+
+#landingView{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
 .content{
     align-items: center;
   justify-content: center;
