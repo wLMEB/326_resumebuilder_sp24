@@ -12,12 +12,13 @@ function render(){ //render function called by other pages to render this page
     content.appendChild(document.createElement("br"));
 
     showInfomations();
-    addButton("back","infoView", infoRender);
-    addButton("select", "downloadView", downloadRender);
+    addButton("Back","infoView", infoRender);
+    addButton("Select", "downloadView", downloadRender);
 }
 
 function addButton(name, page,ren){ // Generate button dynamically and set their event listeners
     const button = document.createElement('button'); // to navigate to the requested page
+    button.classList.add("btn", "btn-outline-secondary");
     button.innerText = `${name}`; 
     content.appendChild(button);
     button.addEventListener("click", () => {
