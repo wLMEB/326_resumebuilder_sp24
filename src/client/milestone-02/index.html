@@ -7,17 +7,42 @@
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <!-- JavaScript Files -->
-    <script type="module" src="script.js" defer></script>
+    <script type="module" src="main.js" defer></script>
 </head>
 <body>
     <div id="webPageHeader">
         <button id="dropDownMenu">Menu</button>
-        <div id="logoBar">ResuMate</div>
+        <div id="logoBar">potential ResuMateLogo</div>
         <h1 id="headerMsg">Welcome to ResuMate</h1>
     </div>
     <br>
-    <div id="content">
-        
+    <!-- <nav>    // Not needed for now
+        <button id="home">Home</button>
+        <button id="info">Information</button>
+        <button id="templetes">Templetes</button>
+        <button id="download">View & Download</button>
+    </nav> -->
+
+    <div id="views">
+        <div id="landingView" class="view">
+            <h2>Landing Page title</h2>
+            <button id="create">build resume</button>
+            <button id="load">access resume</button>
+            <p>Some description text here, create and load are the same funciton for now until database is implemented</p>
+        </div>
+
+        <div id="infoView" class="view">
+            <h2>Input Infomation</h2>
+        </div>
+
+        <div id="templateView" class="view">
+            <h2>Selecting Template</h2>
+        </div>
+
+        <div id="downloadView" class="view">
+            <h2>Download Resume</h2>
+        </div>
+
     </div>
 </body>
 </html>
