@@ -34,7 +34,24 @@ async function showInfomations(){
     content.appendChild(list);
     for (let field of fields){
         const item = document.createElement("li");
-        item.innerText = `${field}: ${await db.getInfo(field)}`;
+        try{
+            item.innerText = `${field}: ${await db.getInfo(field)}`;
+        }catch(err){
+            //item.innerText = `${field}: `;
+            continue;
+        }
+        
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "delete";
+        deleteButton.addEventListener("click", async () => {
+            try{
+                await db.deleteInfo(field);
+            item.remove();
+            }catch(err){
+                console.log(err);
+            }
+        });
+        item.appendChild(deleteButton);
         list.appendChild(item);
     }
 }

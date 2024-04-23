@@ -16,3 +16,8 @@ export async function getInfo(fieldname){
     const doc = await db.get(fieldname);
     return doc.value;
 }
+
+export async function deleteInfo(fieldname){
+    const doc = await db.get(fieldname);
+    await db.remove(doc);
+}
