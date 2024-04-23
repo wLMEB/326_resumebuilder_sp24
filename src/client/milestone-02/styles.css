@@ -1,10 +1,10 @@
-#webPageHeader {
+/* #webPageHeader {
     display: flex;
     top: 0;
     left: 0;
     width: 100%;
     
-}
+} */
 #dropDownMenu{
     display: inline-block;
 }
