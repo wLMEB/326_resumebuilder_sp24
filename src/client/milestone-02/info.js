@@ -93,6 +93,7 @@ function render(){              //render function called by other pages to rende
     console.log("Rendered");
 }
 
+
 /**
  * This asynchronous function gets all the input elements with the class 'inputs', stores their values in an array, and adds each non-empty value to the database with the corresponding field name.
  * 
