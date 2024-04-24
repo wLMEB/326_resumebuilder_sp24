@@ -24,7 +24,7 @@ function fieldGen(fieldName){ // Generate each field dynamically
         subHeader.innerText = type;
         content.appendChild(subHeader);
     }
-    field.id = `${type}-${fieldName}`;
+    field.id = `${type}_${fieldName}`;
     content.appendChild(fieldLabel);
     content.appendChild(field);
     content.appendChild(document.createElement('br'));
@@ -112,7 +112,11 @@ async function storingTODB(){
     console.log(values);
     for(let i = 0; i < inputs.length; i++){
         if(values[i] != ""){
-            await db.addInfo(inputs[i].id, values[i]);
+            try{
+                await db.addInfo(inputs[i].id, values[i]);
+            }catch(err){
+                console.log(err)
+            }
         }
         
     }
