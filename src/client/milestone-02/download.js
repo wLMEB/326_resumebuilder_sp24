@@ -17,7 +17,7 @@ const content = document.getElementById('downloadView');
  * @returns {void} This function does not return anything.
  */
 function render(){ //render function called by other pages to render this page
-    content.innerHTML = "<h2>Download your resume!</h2><p>Preview your resume below. Please navigate to the previous sections if you need to make any changes.</p>";
+    content.innerHTML = "<h2>Download your resume!</h2><p>Hit Preview button will have resume pop up in a new window. Leave the window open to select download button to print out resume. Please navigate to the previous sections if you need to make any changes.</p>";
     content.appendChild(document.createElement("br"));
     addButton("Back","templateView", tempRender);
     addButton("Preview", "downloadView", ()=>{buildResume(getSelectedFields(),getSelectedStyle())});
