@@ -10,6 +10,8 @@
     font-size: 14pt;
     font-family: monospace;
 }
+
+
 #dropDownMenu{
     display: inline-block;
 }
@@ -31,6 +33,12 @@
     text-align: center;
     margin-left: 20%;
     margin-right: 20%;
+    align-items: center;
+    img {
+        max-width: 900px;
+        max-height: 900px;
+        padding-top: 5%;
+    }
 }
 
 #infoView{
