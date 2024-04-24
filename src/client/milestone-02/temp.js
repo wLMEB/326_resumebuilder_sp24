@@ -8,13 +8,10 @@ const content = document.getElementById("templateView");
 
 export let selectedFields = [];
 
-function render() {
-  //render function called by other pages to render this page
-  content.innerHTML = "";
-  content.textContent =
-    "to be implemented for selecting templates, select button is temporatay for navigating through pages";
-  content.appendChild(document.createElement("br"));
-  selectedFields = [];
+function render(){ //render function called by other pages to render this page
+    content.innerHTML = "<h2>Select a template!</h2><p>We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
+    content.appendChild(document.createElement("br"));
+    selectedFields = [];
     showInfomations();
     addButton("Back","infoView", infoRender);
     addButton("Select", "downloadView", downloadRender);

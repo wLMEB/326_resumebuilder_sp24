@@ -6,11 +6,7 @@ import { buildResume } from "./generator.js";
 const content = document.getElementById('downloadView');
 
 function render(){ //render function called by other pages to render this page
-    content.innerHTML = "";
-    content.textContent = "resume preview:"
-    let newWindow = window.open('', ' ')
-    //getSelectedFields()
-    // console.log(getSelectedFields());
+    content.innerHTML = "<h2>Download your resume!</h2><p>Preview your resume below. Please navigate to the previous sections if you need to make any changes.</p>";
     content.appendChild(document.createElement("br"));
     addButton("Back","templateView", tempRender);
     addButton("Preview", "downloadView", buildResume);
