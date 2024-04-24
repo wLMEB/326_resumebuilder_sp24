@@ -88,10 +88,21 @@ async function showInformations() {
     selectButton.addEventListener("click", ()=>{
       if(!selectedFields.includes(field)){
         selectedFields.push(field);
+        item.appendChild(deselectButton)
+      }
+    })
+    const deselectButton = document.createElement("button");
+    deselectButton.innerText = "deselect";
+    deselectButton.addEventListener("click", ()=>{
+      if(selectedFields.includes(field)){
+        selectedFields.pop(field);
+        item.removeChild(deselectButton)
+        
       }
     })
     item.appendChild(deleteButton);
     item.appendChild(selectButton);
+    
     list.appendChild(item);
   }
 }
