@@ -23,6 +23,7 @@ export async function addInfo(fieldname, value){
 /**
  * This function retrieves a information block from the database using the provided fieldname as the _id.
  * 
+ * @async
  * @param {string} fieldname - The fieldname that will be used as the _id of the information block to retrieve information block.
  * @returns {Promise<any>}  - A promise that resolves when the information block has been successfully got.
  * @throws {Error} - Throws an error if the operation fails.
@@ -35,6 +36,7 @@ export async function getInfo(fieldname){
 /**
  * This function deletes a information block from the database using the provided fieldname as the _id.
  * 
+ * @async
  * @param {string} fieldname - The fieldname that will be used as the _id of the information block to delete information block.
  * @returns {Promise<void>}  - A promise that resolves when the information block has been successfully deleted.
  * @throws {Error} - Throws an error if the operation fails.
