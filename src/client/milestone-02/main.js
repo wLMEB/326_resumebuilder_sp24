@@ -2,6 +2,12 @@ import { render as infoRender} from "./info.js" ;
 import { render as downloadRender} from "./download.js";
 import { render as tempRender } from "./temp.js";
 
+/**
+ * This function hides all elements with the class 'view', calls the render function corresponding to the provided viewId, and then displays the element with the provided viewId.
+ * 
+ * @param {string} viewId - The id of the view to navigate to. 
+ * @returns {void} This function does not return anything.
+ */
 function navigate(viewId) { // display the requested view by viewId
   // Hide all views
   document.querySelectorAll(".view").forEach((view) => {
