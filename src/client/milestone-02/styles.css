@@ -11,6 +11,10 @@
     font-family: monospace;
 }
 
+h4{
+    text-decoration: underline;
+}
+
 
 #dropDownMenu{
     display: inline-block;
