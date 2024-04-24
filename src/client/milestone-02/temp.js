@@ -17,12 +17,21 @@ export let selectedFields = [];
  * @returns {void} This function does not return anything.
  */
 function render(){ //render function called by other pages to render this page
-    content.innerHTML = "<h2>Select a template!</h2><p>We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
+    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
     content.appendChild(document.createElement("br"));
     selectedFields = [];
+    let infoHeader = document.createElement('h3')
+    infoHeader.innerText = "Choose your info"
+    content.appendChild(infoHeader)
     showInformations();
+    let tempHeader = document.createElement('h3')
+    tempHeader.innerText = "Choose your template"
+    content.appendChild(tempHeader)
+    showTemplate();
     addButton("Back","infoView", infoRender);
-    addButton("Select", "downloadView", downloadRender);
+    addButton("Confirm", "downloadView", downloadRender);
+    
+
 }
 
 /**
@@ -107,6 +116,33 @@ async function showInformations() {
   }
 }
 
+function showTemplate(){
+  let tempCount = 2;
+  const container = document.createElement('div');
+  for(let i = 1; i<=tempCount; i++){
+    const temp = document.createElement('div')
+    const t = document.createElement('img')
+    
+    const tselect = document.createElement("button");
+    tselect.id = i;
+    tselect.innerText = "select";
+    tselect.addEventListener("click", ()=>{
+        selectedStyle = i;
+        document.getElementById("curSelect").innerText=`Current template selection: ${selectedStyle}`;
+        
+      })
+    t.innerText="embed image here"
+    temp.appendChild(t);
+    temp.appendChild(tselect)
+    container.appendChild(temp)
+    content.appendChild(container)
+  }
+  const currentSelection = document.createElement('div')
+  currentSelection.innerText = `Current template selection: ${selectedStyle}`;
+  currentSelection.id = "curSelect"
+  container.appendChild(currentSelection)
+
+}
 /**
  * This function returns the 'selectedFields' array.
  * 

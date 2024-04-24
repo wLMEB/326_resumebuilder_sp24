@@ -31,10 +31,10 @@ function buildResume(fields,style){
         group.appendChild(subHeader);
     })
     fields.forEach(field =>{
-        let group = resume.getElementById(field._id.split('-')[0]);
+        let group = resume.getElementById(field._id.split('_')[0]);
         let data = resume.createElement('div');
         data.innerText = field.value;
-        data.id = field._id.split('-')[1];
+        data.id = field._id.split('_')[1];
         group.appendChild(data);
     })
 }
