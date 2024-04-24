@@ -15,7 +15,7 @@ function navigate(viewId) { // display the requested view by viewId
     case "downloadView":
       downloadRender();
       break;
-    case "tempRender":
+    case "templateView":
       tempRender();
   }
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadButton = document.getElementById("load");
   if (loadButton) {
     loadButton.addEventListener("click", () => {
-      navigate("downloadView");
+      navigate("templateView");
       console.log("Load button clicked");
     });
   }

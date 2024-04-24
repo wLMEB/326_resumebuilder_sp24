@@ -4,7 +4,7 @@ import * as db from "./db.js";
 const content = document.getElementById('infoView');
 // Array of fields to be rendered
 export const fields = ['Name', 'Email', 'Phone Number', 'School', 'Start - End date', 'Degree', 'Organization', 'Position', 'Duration', 'Description', 'Skills'];
-
+let type =  ""
 /**
  * This function dynamically generates a field with a label and an input element. It also creates a subheader based on the fieldName.
  * 
@@ -18,25 +18,29 @@ function fieldGen(fieldName){ // Generate each field dynamically
 
     fieldLabel.innerText=`${fieldName}: `;
     field.classList.add('inputs');
-
+    
     if (fieldName === "Name"){
-        subHeader.innerText = "Personal";
+        type =  "Personal"
+        subHeader.innerText = type;
         content.appendChild(subHeader);
     }
-    
+    field.id = `${type}-${fieldName}`;
     content.appendChild(fieldLabel);
     content.appendChild(field);
     content.appendChild(document.createElement('br'));
     switch (fieldName){
         case "Phone Number":
+            type = "Education"
             subHeader.innerText = "Education";
             content.appendChild(subHeader);
             break;
         case "Degree":
+            type = "Experience"
             subHeader.innerText = "Experience";
             content.appendChild(subHeader);
             break;
         case "Description":
+            type = "Other"
             subHeader.innerText = "Other";
             content.appendChild(subHeader);
     }
@@ -107,7 +111,7 @@ async function storingTODB(){
     console.log(values);
     for(let i = 0; i < inputs.length; i++){
         if(values[i] != ""){
-            await db.addInfo(fields[i], values[i]);
+            await db.addInfo(inputs[i].id, values[i]);
         }
         
     }

@@ -5,14 +5,14 @@ import { render as downloadRender } from "./download.js";
 import * as db from "./db.js";
 
 const content = document.getElementById("templateView");
-
+let selectedStyle = 1;
 export let selectedFields = [];
 
 function render(){ //render function called by other pages to render this page
     content.innerHTML = "<h2>Select a template!</h2><p>We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
     content.appendChild(document.createElement("br"));
     selectedFields = [];
-    showInfomations();
+    showInformations();
     addButton("Back","infoView", infoRender);
     addButton("Select", "downloadView", downloadRender);
 }
@@ -30,23 +30,28 @@ function addButton(name, page,ren){ // Generate button dynamically and set their
 
 }
 
-async function showInfomations() {
+async function showInformations() {
   const list = document.createElement("ol");
   content.appendChild(list);
-  for (let field of fields) {
+  let allFields = null;
+  try{
+    allFields = await db.getAllInfo();
+  }catch(err){
+    console.log(err);
+  }
+  for (let field of allFields) {
     const item = document.createElement("li");
     try {
-      item.innerText = `${field}: ${await db.getInfo(field)}`;
+      item.innerText = `${field._id}: ${await db.getInfo(field._id)}`;
     } catch (err) {
       //item.innerText = `${field}: `;
       continue;
     }
-
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "delete";
     deleteButton.addEventListener("click", async () => {
       try {
-        await db.deleteInfo(field);
+        await db.deleteInfo(field._id);
         item.remove();
       } catch (err) {
         console.log(err);
@@ -56,7 +61,9 @@ async function showInfomations() {
     const selectButton = document.createElement("button");
     selectButton.innerText = "select";
     selectButton.addEventListener("click", ()=>{
+      if(!selectedFields.includes(field)){
         selectedFields.push(field);
+      }
     })
     item.appendChild(deleteButton);
     item.appendChild(selectButton);
@@ -67,4 +74,7 @@ async function showInfomations() {
 function getSelectedFields() {
   return selectedFields;
 }
-export { render, getSelectedFields };
+function getSelectedStyle(){
+    return selectedStyle;
+}
+export { render, getSelectedFields,getSelectedStyle };

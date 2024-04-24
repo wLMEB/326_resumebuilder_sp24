@@ -45,3 +45,16 @@ export async function deleteInfo(fieldname){
     const doc = await db.get(fieldname);
     await db.remove(doc);
 }
+
+
+/**
+ * This function retrieves all information block from the database.
+ * 
+ * @async
+ * @returns {Promise<Array<Object>>} - A promise that resolves to an array of information blocks.
+ * @throws {Error} - Throws an error if there is a problem accessing the database.
+ */
+export async function getAllInfo(){
+    const allDocs = await db.allDocs({include_docs: true});
+    return allDocs.rows.map((row) => row.doc);
+}
