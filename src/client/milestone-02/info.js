@@ -91,7 +91,8 @@ function render(){              //render function called by other pages to rende
     addButton("Back", "landingView", ()=>null);
     addButton("Submit" , "templateView", ()=>{
                                     storingTODB();
-                                    tempRender();
+                                    setTimeout(()=>{tempRender();}, 1000);
+                                    //tempRender();
                                     
                                 });
     console.log("Rendered");
