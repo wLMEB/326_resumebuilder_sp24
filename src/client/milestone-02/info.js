@@ -17,6 +17,7 @@ function fieldGen(fieldName){ // Generate each field dynamically
 }
 function addButton(name, page, rend){ // Generate button dynamically and set their event listeners
     const button = document.createElement('button'); // to navigate to the requested page
+    button.classList.add("btn", "btn-outline-secondary");
     button.innerText = `${name}`;
     content.appendChild(button);
     button.addEventListener("click", () => {
@@ -33,8 +34,8 @@ function render(){              //render function called by other pages to rende
     content.innerHTML = "";
     addHeadernText();
     fields.forEach(field => fieldGen(field));
-    addButton("back", "landingView", ()=>null);
-    addButton("submit" , "templateView", ()=>{
+    addButton("Back", "landingView", ()=>null);
+    addButton("Submit" , "templateView", ()=>{
                                     storingTODB();
                                     tempRender();
                                     

@@ -5,6 +5,11 @@
     width: 100%;
     
 } */
+
+*{
+    font-size: 14pt;
+    font-family: monospace;
+}
 #dropDownMenu{
     display: inline-block;
 }
@@ -21,6 +26,44 @@
     text-align: center;
     display: inline-block;
 }
+
+#landingView{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#infoView{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    * {
+        margin: 2%;
+    }
+}
+
+#templateView{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    * {
+        margin: 2%;
+    }
+}
+
+#downloadView{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    * {
+        margin: 2%;
+    }
+}
+
+#body-header{
+    font-size: 40pt;
+}
+
 .content{
     align-items: center;
   justify-content: center;

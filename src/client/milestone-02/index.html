@@ -12,13 +12,24 @@
     <script type="module" src="main.js" defer></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-secondary-subtle">
-        <div id="webPageHeader">
-            <button id="dropDownMenu">Menu</button>
-            <div id="logoBar">potential ResuMateLogo</div>
-            <h1 id="headerMsg">Welcome to ResuMate</h1>
+    <nav class="navbar navbar-expand-lg bg-secondary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#landingView">ResuMate</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#landingView">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#downloadView">Download</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </nav>
+      </nav>
     <br>
     <!-- <nav>    // Not needed for now
         <button id="home">Home</button>
@@ -29,9 +40,10 @@
 
     <div id="views">
         <div id="landingView" class="view">
-            <h2>Landing Page title</h2>
-            <button id="create">build resume</button>
-            <button id="load">access resume</button>
+            <h2 id="body-header">Get dream jobs with ResuMate</h2>
+            <p>Land your dream job with the help of our resume builder. Build a professional and outstanding resume with our free builder and templates. Create a resume today to secure your dream job!</p>
+            <button id="create" class="btn btn-outline-secondary">Build resume</button>
+            <button id="load" class="btn btn-outline-secondary">Access resume</button>
             <p>Some description text here, create and load are the same funciton for now until database is implemented</p>
         </div>
 

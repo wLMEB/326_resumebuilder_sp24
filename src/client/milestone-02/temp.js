@@ -15,20 +15,22 @@ function render() {
     "to be implemented for selecting templates, select button is temporatay for navigating through pages";
   content.appendChild(document.createElement("br"));
 
-  showInfomations();
-  addButton("back", "infoView", infoRender);
-  addButton("select", "downloadView", downloadRender);
+    showInfomations();
+    addButton("Back","infoView", infoRender);
+    addButton("Select", "downloadView", downloadRender);
 }
 
-function addButton(name, page, ren) {
-  // Generate button dynamically and set their event listeners
-  const button = document.createElement("button"); // to navigate to the requested page
-  button.innerText = `${name}`;
-  content.appendChild(button);
-  button.addEventListener("click", () => {
-    ren();
-    navigate(`${page}`);
-  });
+function addButton(name, page,ren){ // Generate button dynamically and set their event listeners
+    const button = document.createElement('button'); // to navigate to the requested page
+    button.classList.add("btn", "btn-outline-secondary");
+    button.innerText = `${name}`; 
+    content.appendChild(button);
+    button.addEventListener("click", () => {
+        
+        ren();
+        navigate(`${page}`);
+    });
+
 }
 
 async function showInfomations() {
