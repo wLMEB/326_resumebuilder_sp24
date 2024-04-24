@@ -1,5 +1,8 @@
 import { navigate } from "./main.js";
-import { render as tempRender } from "./temp.js";
+import { render as tempRender, getSelectedFields } from "./temp.js";
+import { buildResume } from "./generator.js";
+import {getWindow} from "./generator.js";
+
 
 const content = document.getElementById('downloadView');
 
@@ -7,6 +10,8 @@ function render(){ //render function called by other pages to render this page
     content.innerHTML = "<h2>Download your resume!</h2><p>Preview your resume below. Please navigate to the previous sections if you need to make any changes.</p>";
     content.appendChild(document.createElement("br"));
     addButton("Back","templateView", tempRender);
+    addButton("Preview", "downloadView", ()=>{buildResume(getSelectedFields())});
+    addButton("Download", "downloadView", ()=>{getWindow().print()});
 }
 
 function addButton(name, page,ren){ // Generate button dynamically and set their event listeners
@@ -15,7 +20,7 @@ function addButton(name, page,ren){ // Generate button dynamically and set their
     button.innerText = `${name}`;
     content.appendChild(button);
     button.addEventListener("click", () => {
-        console.log(ren)
+       // console.log(ren)
         ren();
         navigate(`${page}`);
     });
