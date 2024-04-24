@@ -3,7 +3,7 @@ import { render as tempRender } from "./temp.js";
 import * as db from "./db.js";
 const content = document.getElementById('infoView');
 // Array of fields to be rendered
-export const fields = ['First Name', 'Last Name', 'Email', 'Education'];
+export const fields = ['Name', 'Email', 'Education'];
 
 function fieldGen(fieldName){ // Generate each field dynamically
     const fieldLabel = document.createElement('label');

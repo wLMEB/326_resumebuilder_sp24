@@ -14,7 +14,7 @@ function render() {
   content.textContent =
     "to be implemented for selecting templates, select button is temporatay for navigating through pages";
   content.appendChild(document.createElement("br"));
-
+  selectedFields = [];
     showInfomations();
     addButton("Back","infoView", infoRender);
     addButton("Select", "downloadView", downloadRender);
