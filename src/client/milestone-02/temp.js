@@ -8,6 +8,14 @@ const content = document.getElementById("templateView");
 let selectedStyle = 1;
 export let selectedFields = [];
 
+/**
+ * This function called by other pages to render this page. It sets the innerHTML of the content element to a predefined string, adds a line break, clears the 'selectedFields' array, shows the information, and adds two buttons: "Back" and "Select".
+ * 
+ * The "Back" button navigates to the 'infoView' and calls the 'infoRender' function when clicked.
+ * The "Select" button navigates to the 'downloadView' and calls the 'downloadRender' function when clicked.
+ * 
+ * @returns {void} This function does not return anything.
+ */
 function render(){ //render function called by other pages to render this page
     content.innerHTML = "<h2>Select a template!</h2><p>We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
     content.appendChild(document.createElement("br"));
@@ -17,6 +25,14 @@ function render(){ //render function called by other pages to render this page
     addButton("Select", "downloadView", downloadRender);
 }
 
+/**
+ * This function dynamically generates a button, sets its text, adds it to the content element, and sets its click event listener.
+ * 
+ * @param {string} name - The text that will be displayed on the button.
+ * @param {string} page - The page to navigate to when the button is clicked.
+ * @param {Function} ren - The function to execute when the button is clicked.
+ * @returns {void} This function does not return anything.
+ */
 function addButton(name, page,ren){ // Generate button dynamically and set their event listeners
     const button = document.createElement('button'); // to navigate to the requested page
     button.classList.add("btn", "btn-outline-secondary");
@@ -30,6 +46,15 @@ function addButton(name, page,ren){ // Generate button dynamically and set their
 
 }
 
+/**
+ * This asynchronous function creates an list, fetches all the information from the database, and for each piece of information, creates a list item with the field name and value, a delete button, and a select button.
+ * 
+ * The delete button, when clicked, deletes the field from the database and removes the list item.
+ * The select button, when clicked, adds the field to the 'selectedFields' array if it is not already included.
+ * 
+ * @async
+ * @returns {Promise<void>} A Promise that resolves when all the information has been fetched from the database and the list has been created.
+ */
 async function showInformations() {
   const list = document.createElement("ol");
   content.appendChild(list);
@@ -71,9 +96,20 @@ async function showInformations() {
   }
 }
 
+/**
+ * This function returns the 'selectedFields' array.
+ * 
+ * @returns {Array} The 'selectedFields' array.
+ */
 function getSelectedFields() {
   return selectedFields;
 }
+
+/**
+ * This function returns the 'selectedStyle' variable.
+ * 
+ * @returns {string} The 'selectedStyle' string.
+ */
 function getSelectedStyle(){
     return selectedStyle;
 }
