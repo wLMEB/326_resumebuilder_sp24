@@ -1,5 +1,5 @@
 import { navigate } from "./main.js";
-import { render as tempRender, getSelectedFields } from "./temp.js";
+import { render as tempRender, getSelectedFields, getSelectedStyle } from "./temp.js";
 import { buildResume } from "./generator.js";
 import {getWindow} from "./generator.js";
 
@@ -10,7 +10,7 @@ function render(){ //render function called by other pages to render this page
     content.innerHTML = "<h2>Download your resume!</h2><p>Preview your resume below. Please navigate to the previous sections if you need to make any changes.</p>";
     content.appendChild(document.createElement("br"));
     addButton("Back","templateView", tempRender);
-    addButton("Preview", "downloadView", ()=>{buildResume(getSelectedFields())});
+    addButton("Preview", "downloadView", ()=>{buildResume(getSelectedFields(),getSelectedStyle())});
     addButton("Download", "downloadView", ()=>{getWindow().print()});
 }
 

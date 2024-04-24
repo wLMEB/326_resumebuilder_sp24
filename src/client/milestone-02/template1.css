@@ -1,0 +1,40 @@
+#Personal { display: flex; flex-direction: column; }
+#Name{
+    order:1;
+}
+#Email{
+    order:2;
+}
+#Phone\ Number{
+    order:3;
+}
+
+#Education{ display: flex; flex-direction: column; }
+#School{
+    order:1;
+}
+#Start{
+    order:2;
+}
+#Degree{
+    order:3;
+}
+
+#Experience{ display: flex; flex-direction: column; }
+#Organization{
+    order:1;
+}
+#Position{
+    order:2;
+}
+#Duration{
+    order:3;
+}
+#Description{
+    order:3;
+}
+
+#Other{ display: flex; flex-direction: column; }
+#Skill{
+    order:1;
+}   
