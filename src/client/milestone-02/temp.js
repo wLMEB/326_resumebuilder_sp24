@@ -131,6 +131,7 @@ function showTemplate(){
         document.getElementById("curSelect").innerText=`Current template selection: ${selectedStyle}`;
         
       })
+    t.src = `../assets/t${i}img.png`;
     t.innerText="embed image here"
     temp.appendChild(t);
     temp.appendChild(tselect)
