@@ -55,6 +55,7 @@ body {
   background-color: rgb(3, 21, 27);
   color: white;
   text-align: center;
+  font-size-adjust: 0.58;
 }
 
 h1 {

@@ -133,6 +133,7 @@ function showTemplate(){
       })
     t.src = `../assets/t${i}img.png`;
     t.innerText="embed image here"
+    t.classList.add("templateImage")
     temp.appendChild(t);
     temp.appendChild(tselect)
     container.appendChild(temp)
