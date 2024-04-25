@@ -37,7 +37,6 @@ For src/client/milestone-02 folder we have:
 
 - template1.css: Style of our first template.
 
-
 ## Setup Instructions
 npm run milestone-02
 
