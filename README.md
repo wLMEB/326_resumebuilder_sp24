@@ -29,8 +29,6 @@ For src/client/milestone-02 folder we have:
 
 - main.js: Display the requested view by viewId.
 
-- mockData.js: Create mock data for this project.
-
 - styles.css: Style of our web page.
 
 - temp.js: Create the page to select information fields and template.
