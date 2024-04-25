@@ -1,40 +1,67 @@
-#Personal { display: flex; flex-direction: column; }
-#Name{
-    order:1;
+#Personal {
+  display: flex;
+  flex-direction: column;
 }
-#Email{
-    order:2;
+#Name {
+  order: 1;
 }
-#Phone\ Number{
-    order:3;
+#Email {
+  order: 2;
 }
-
-#Education{ display: flex; flex-direction: column; }
-#School{
-    order:1;
-}
-#Start\ -\ End\ date{
-    order:2;
-}
-#Degree{
-    order:3;
+#Phone\ Number {
+  order: 3;
 }
 
-#Experience{ display: flex; flex-direction: column; }
-#Organization{
-    order:1;
+#Education {
+  display: flex;
+  flex-direction: column;
 }
-#Position{
-    order:2;
+#School {
+  order: 1;
 }
-#Duration{
-    order:3;
+#Start\ -\ End\ date {
+  order: 2;
 }
-#Description{
-    order:3;
+#Degree {
+  order: 3;
 }
 
-#Other{ display: flex; flex-direction: column; }
-#Skill{
-    order:1;
-}   
+#Experience {
+  display: flex;
+  flex-direction: column;
+}
+#Organization {
+  order: 1;
+}
+#Position {
+  order: 2;
+}
+#Duration {
+  order: 3;
+}
+#Description {
+  order: 3;
+}
+
+#Other {
+  display: flex;
+  flex-direction: column;
+}
+#Skill {
+  order: 1;
+}
+
+body {
+  background-color: rgb(3, 21, 27);
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+h3 {
+  color: white;
+  text-align: center;
+}

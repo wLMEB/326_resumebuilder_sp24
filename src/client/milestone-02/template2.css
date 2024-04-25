@@ -1,0 +1,70 @@
+#Personal {
+    display: flex;
+    flex-direction: column;
+  }
+  #Name {
+    order: 1;
+  }
+  #Email {
+    order: 2;
+  }
+  #Phone\ Number {
+    order: 3;
+  }
+  
+  #Education {
+    display: flex;
+    flex-direction: column;
+  }
+  #School {
+    order: 1;
+  }
+  #Start\ -\ End\ date {
+    order: 2;
+  }
+  #Degree {
+    order: 3;
+  }
+  
+  #Experience {
+    display: flex;
+    flex-direction: column;
+  }
+  #Organization {
+    order: 1;
+  }
+  #Position {
+    order: 2;
+  }
+  #Duration {
+    order: 3;
+  }
+  #Description {
+    order: 3;
+  }
+  
+  #Other {
+    display: flex;
+    flex-direction: column;
+  }
+  #Skill {
+    order: 1;
+  }
+  
+  body {
+    background-color: rgb(242, 242, 242);
+    color: rgb(72, 3, 3);
+    border-radius: 25px;
+  }
+  
+  h1 {
+    color: rgb(242, 242, 242);
+  }
+  h3 {
+    color: rgb(242, 242, 242);
+    border-radius: 25px;
+    background: #3d2424;
+    padding: 10px;
+    width: 120px;
+    height: 20px;
+  }
