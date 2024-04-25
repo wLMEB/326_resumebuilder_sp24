@@ -209,6 +209,9 @@ function addButton(name, page, rend) {
 function addHeadernText() {
   const header = document.createElement("h2");
   header.innerText = "Input your information:";
+  const subHeader = document.createElement("h4");
+  subHeader.innerText = "If you want to input multiple experience, make sure to adjust the number of experience by the buttons first before adding any information.";
+  content.appendChild(subHeader);
   content.appendChild(header);
 }
 
@@ -258,8 +261,8 @@ function render() {
   content.innerHTML = "";
   addHeadernText();
   fields.forEach((field) => fieldGen(field));
-  addRemoveExperienceButtons();
   addButton("Back", "landingView", () => null);
+  addRemoveExperienceButtons();
   addButton("Submit", "templateView", () => {
     storingTODB();
     setTimeout(() => {
