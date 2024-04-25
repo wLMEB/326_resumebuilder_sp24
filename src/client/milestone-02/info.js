@@ -250,8 +250,8 @@ function render() {
   content.innerHTML = "";
   addHeadernText();
   fields.forEach((field) => fieldGen(field));
-  addRemoveExperienceButtons();
   addButton("Back", "landingView", () => null);
+  addRemoveExperienceButtons();
   addButton("Submit", "templateView", () => {
     storingTODB();
     setTimeout(() => {
