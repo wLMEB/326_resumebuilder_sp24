@@ -100,7 +100,6 @@ function fieldGen(fieldName) {
     field.classList.add("inputs");
   }
 
-  field.id = `${type}-${fieldName}`;
   content.appendChild(fieldLabel);
   content.appendChild(field);
   content.appendChild(document.createElement("br"));
@@ -138,6 +137,42 @@ function fieldGen(fieldName) {
       subHeader.innerText = "Other";
       content.appendChild(subHeader);
   }
+
+  field.id = `${type}-${fieldName}`;
+
+  // splice the inputs to retrieve only the IDS from 8 til the second last element
+    const inputs = document.querySelectorAll(".inputs");
+    const ids = [];
+    for (let i = 8; i < inputs.length - 1; i++) {
+      ids.push(inputs[i].id);
+    }
+    // // if ids is equal to 5, change the last element to 'Experience-Description'
+    // if (ids.length === 5) {
+    //   ids[4] = "Experience-Description";
+    // }
+    // if ids is divisible by 5, edit the ids such that the first 5 elements are the first experience, the next 5 are the second experience, and so on
+    if (ids.length % 5 === 0) {
+        // change the first 5 elements to be 'Experience-Organization', 'Experience-Position', 'Experience-Work Start', 'Experience-Work End', 'Experience-Description', and the next 5 elements to be 'Experience 2-Organization', 'Experience 2-Position', 'Experience 2-Work Start', 'Experience 2-Work End', 'Experience 2-Description', and so on
+        let count = 0;
+        for (let i = 0; i < ids.length; i++) {
+            if (i % 5 === 0) {
+                count++;
+            }
+            ids[i] = `Experience ${count}-${fields[i % 5 + 8]}`;
+        }
+    }
+    // update inputs ids
+    for (let i = 0; i < inputs.length - 1; i++) {
+        // first 8 elements are not changed
+        if (i >= 8) {
+            inputs[i].id = ids[i - 8];
+        }
+        // change the rest of the elements
+        if (i > 8 && i < inputs.length - 2) {
+            inputs[i].id = ids[i - 8];
+        }
+    }
+    console.log(inputs);
 }
 
 /**
