@@ -212,6 +212,17 @@ function addHeadernText() {
   content.appendChild(header);
 }
 
+/**
+ * This function creates two buttons: "Add Experience" and "Remove Experience". 
+ * 
+ * The "Add Experience" button, when clicked, increments the 'numExperience' variable and calls the 'render' function.
+ * 
+ * The "Remove Experience" button, when clicked, checks if 'numExperience' is greater than 0. If it is, it decrements 'numExperience' and calls the 'render' function.
+ * 
+ * Both buttons are appended to the 'content' element.
+ * 
+ * @returns {void} This function does not return anything.
+ */
 function addRemoveExperienceButtons() {
   const addButton = document.createElement("button");
   addButton.classList.add("btn", "btn-outline-secondary");
