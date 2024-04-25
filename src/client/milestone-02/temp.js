@@ -116,6 +116,12 @@ async function showInformations() {
   }
 }
 
+/**
+ * This function creates a container div and populates it with 2 templates. Each template consists of an image and a select button.
+ * When clicked select button, it will sets the 'selectedStyle' variable to the id of the button and updates the text of the 'curSelect' element to reflect the current template selection.
+ *
+ * @returns {void} This function does not return anything.
+ */
 function showTemplate(){
   let tempCount = 2;
   const container = document.createElement('div');
@@ -143,8 +149,9 @@ function showTemplate(){
   currentSelection.innerText = `Current template selection: ${selectedStyle}`;
   currentSelection.id = "curSelect"
   container.appendChild(currentSelection)
-
 }
+
+
 /**
  * This function returns the 'selectedFields' array.
  * 
