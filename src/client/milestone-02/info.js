@@ -32,9 +32,9 @@ const majorOptions = [
   "Biology",
   "Physics",
 ];
-const degreeOptions = ["Bachelor's", "Master's", "PhD"];
+const degreeOptions = ["Bachelor's", "Master's", "PhD", ""];
 
-let type = "";
+let type = "Personal";
 let numExperience = 0;
 /**
  * This function dynamically generates a field with a label and an input element. It also creates a subheader based on the fieldName.
@@ -71,6 +71,9 @@ function fieldGen(fieldName) {
       const optionElement = document.createElement("option");
       optionElement.value = option;
       optionElement.text = option;
+      if(option ===""){
+        optionElement.selected = true;
+      }
       field.appendChild(optionElement);
     });
   } else if (
@@ -103,6 +106,8 @@ function fieldGen(fieldName) {
   content.appendChild(fieldLabel);
   content.appendChild(field);
   content.appendChild(document.createElement("br"));
+  console.log(type,fieldName);
+  field.id = `${type}-${fieldName}`;
   switch (fieldName) {
     case "Phone Number":
       type = "Education";
@@ -136,9 +141,10 @@ function fieldGen(fieldName) {
       type = "Other";
       subHeader.innerText = "Other";
       content.appendChild(subHeader);
+        break;
   }
 
-  field.id = `${type}-${fieldName}`;
+  
 
   // splice the inputs to retrieve only the IDS from 8 til the second last element
     const inputs = document.querySelectorAll(".inputs");
@@ -172,7 +178,7 @@ function fieldGen(fieldName) {
             inputs[i].id = ids[i - 8];
         }
     }
-    console.log(inputs);
+    //console.log(inputs);
 }
 
 /**
@@ -262,6 +268,7 @@ function render() {
 async function storingTODB() {
   const inputs = document.querySelectorAll(".inputs");
   let values = [];
+  console.log(inputs);
   inputs.forEach((input) => values.push(input.value));
   console.log(values);
   for (let i = 0; i < inputs.length; i++) {
@@ -269,7 +276,7 @@ async function storingTODB() {
       try {
         await db.addInfo(inputs[i].id, values[i]);
       } catch (err) {
-        console.log(err);
+        alert("Already exists information for the same field, please delete the existing information first then add new information"); 
       }
     }
   }

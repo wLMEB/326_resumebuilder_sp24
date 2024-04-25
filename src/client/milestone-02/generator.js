@@ -2,13 +2,16 @@ import * as db from './db.js';
 let win = null;
 let resume = null;
 let types = ["Personal","Education","Experience","Other"];
+// let numExperience = getNumExperience()
 /**
  * This function opens a new window and builds a resume in it. It creates an h1 element, sets its text, and appends it to the body of the new window's document.
  * 
  * @param {Object} fields - The fields to be included in the resume.
  * @returns {void} This function does not return anything.
  */
+
 function buildResume(fields,style){
+    console.log(fields);
     win = window.open("", "_blank", "width=800 ,height=1000 ,top=100,left=100" )
     resume = win.document;
     let css = resume.createElement('link');
@@ -31,10 +34,18 @@ function buildResume(fields,style){
         group.appendChild(subHeader);
     })
     fields.forEach(field =>{
-        let group = resume.getElementById(field._id.split('_')[0]);
+       let type = field._id.split('-')[0];
+        
+        let group = resume.getElementById(type);
+        if (group === null){ 
+            group = resume.getElementById("Experience")
+        }
         let data = resume.createElement('div');
         data.innerText = field.value;
-        data.id = field._id.split('_')[1];
+        data.id = field._id.split('-')[1];
+        if(data.id === "Name" || data.id === "Email" || data.id === "Phone Number"){
+            group = resume.getElementById("Personal");
+        }
         group.appendChild(data);
     })
 }
