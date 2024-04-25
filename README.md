@@ -37,6 +37,7 @@ For src/client/milestone-02 folder we have:
 
 ## Setup Instructions
 clone repository
+
 npm run milestone-02
 
 ## Documentation
