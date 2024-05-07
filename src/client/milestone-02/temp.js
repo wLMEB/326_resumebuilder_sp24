@@ -69,7 +69,15 @@ async function showInformations() {
   content.appendChild(list);
   let allFields = null;
   try{
-    allFields = await db.getAllInfo();
+    //allFields = await db.getAllInfo();
+    const response = await fetch(`/displayAll`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    allFields = await response.json();
+    console.log(allFields);
   }catch(err){
     console.log(err);
   }
@@ -78,7 +86,21 @@ async function showInformations() {
     try {
       item.innerText = `${field._id}: `;
       const input = document.createElement("input");
-      input.value =  `${await db.getInfo(field._id)}`;
+      // input.value =  `${await db.getInfo(field._id)}`;
+      try{
+        const response = await fetch(`/load?fieldname=${field._id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log(response);
+        input.value = await response.json();
+        console.log(input.value);
+      }catch(err){
+        console.log(err);
+      }
+      
       input.id = `${field._id}value`;
       item.appendChild(input);
     } catch (err) {
@@ -89,7 +111,18 @@ async function showInformations() {
     deleteButton.innerText = "delete";
     deleteButton.addEventListener("click", async () => {
       try {
-        await db.deleteInfo(field._id);
+        //await db.deleteInfo(field._id);
+        try{
+          const response = await fetch(`/remove?fieldname=${field._id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          
+        }catch(err){
+          console.log(err);
+        }
         item.remove();
       } catch (err) {
         console.log(err);
@@ -99,8 +132,15 @@ async function showInformations() {
     editButton.innerText = "save";
     editButton.addEventListener("click", async () => {
       try {
-        await db.update(field._id, document.getElementById(`${field._id}value`).value);
+        //await db.update(field._id, document.getElementById(`${field._id}value`).value);
         
+        const response = await fetch(`/update?fieldname=${field._id}&value=${document.getElementById(`${field._id}value`).value}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
         for(let i of selectedFields){
           if(i._id === field._id){
             i.value = document.getElementById(`${field._id}value`).value;

@@ -46,7 +46,7 @@ export async function deleteInfo(fieldname){
     await db.remove(doc);
 }
 
-export async function update(fieldname, value){
+export async function updateInfo(fieldname, value){
     
     const doc = await db.get(fieldname);
     doc.value = value;

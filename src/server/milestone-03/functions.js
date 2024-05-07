@@ -31,7 +31,7 @@ export async function add(response, fieldname, value){
 }
 export async function update(response, fieldname, value){
     try {
-        const info = await db.addInfo(fieldname, value);
+        const info = await db.updateInfo(fieldname, value);
         response.writeHead(200, headerFields);
         response.write("success");
         response.end();

@@ -285,9 +285,16 @@ async function storingTODB() {
   for (let i = 0; i < inputs.length; i++) {
     if (values[i] != "") {
       try {
-        await db.addInfo(inputs[i].id, values[i]);
+        //await db.addInfo(inputs[i].id, values[i]);
+        const response = await fetch(`/add?fieldname=${inputs[i].id}&value=${values[i]}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
       } catch (err) {
-        alert("Already exists information for the same field, please delete the existing information first then add new information"); 
+        console.log(err);
+        alert("Already exists information for the same field, please delete or edit the existing information first then add new information"); 
       }
     }
   }
