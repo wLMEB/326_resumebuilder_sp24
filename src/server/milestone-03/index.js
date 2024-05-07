@@ -57,7 +57,7 @@ app
   .all(MethodNotAllowedHandler);
 
   app.route("*").all(async (request, response) => {
-    response.status(404).send(`Not found: ${request.path}`);
+    response.status(404).send(`404 Not found: ${request.path}`);
   });
   
   app.listen(port, () => {
