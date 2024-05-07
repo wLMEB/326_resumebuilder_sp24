@@ -17,7 +17,7 @@ export let selectedFields = [];
  * @returns {void} This function does not return anything.
  */
 function render(){ //render function called by other pages to render this page
-    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p>";
+    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p><p>Information can also be modified below, changes are<b>this generation ONLY</b>unless the save button is pressed.</p>";
     content.appendChild(document.createElement("br"));
     selectedFields = [];
     let infoHeader = document.createElement('h3')
@@ -76,7 +76,11 @@ async function showInformations() {
   for (let field of allFields) {
     const item = document.createElement("li");
     try {
-      item.innerText = `${field._id}: ${await db.getInfo(field._id)}`;
+      item.innerText = `${field._id}: `;
+      const input = document.createElement("input");
+      input.value =  `${await db.getInfo(field._id)}`;
+      input.id = `${field._id}value`;
+      item.appendChild(input);
     } catch (err) {
       //item.innerText = `${field}: `;
       continue;
@@ -91,10 +95,27 @@ async function showInformations() {
         console.log(err);
       }
     });
-
+    const editButton = document.createElement("button");
+    editButton.innerText = "save";
+    editButton.addEventListener("click", async () => {
+      try {
+        await db.update(field._id, document.getElementById(`${field._id}value`).value);
+        
+        for(let i of selectedFields){
+          if(i._id === field._id){
+            i.value = document.getElementById(`${field._id}value`).value;
+            //console.log(i.value)
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    
+    });
     const selectButton = document.createElement("button");
     selectButton.innerText = "select";
     selectButton.addEventListener("click", ()=>{
+      field.value = document.getElementById(`${field._id}value`).value;
       if(!selectedFields.includes(field)){
         selectedFields.push(field);
         item.appendChild(deselectButton)
@@ -104,11 +125,18 @@ async function showInformations() {
     deselectButton.innerText = "deselect";
     deselectButton.addEventListener("click", ()=>{
       if(selectedFields.includes(field)){
-        selectedFields.pop(field);
+        for(let i of selectedFields){
+          if(i._id === field._id){
+            i.value = document.getElementById(`${field._id}value`).value;
+            selectedFields.pop(i);
+            break;
+          }
+        }
         item.removeChild(deselectButton)
         
       }
     })
+    item.appendChild(editButton);
     item.appendChild(deleteButton);
     item.appendChild(selectButton);
     

@@ -46,6 +46,13 @@ export async function deleteInfo(fieldname){
     await db.remove(doc);
 }
 
+export async function update(fieldname, value){
+    
+    const doc = await db.get(fieldname);
+    doc.value = value;
+    await db.put(doc);
+    // return doc
+}
 
 /**
  * This function retrieves all information block from the database.
