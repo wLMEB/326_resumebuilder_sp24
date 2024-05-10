@@ -35,10 +35,19 @@ For src/client/milestone-02 folder we have:
 
 - template1.css: Style of our first template.
 
+- template2.css: Style of our Second template.
+
+For src/server/milestone-03 folder we have: 
+- db.js: Provides a set of functions for interacting with a database. It exports five asynchronous functions: addInfo, getInfo, deleteInfo, updateInfo, and getAllInfo, to add, get, delete and update information block.
+
+- functions.js: Provides a set of asynchronous functions for interacting with a database. This module depends on a db.js module for database operations. 
+
+- index.js: The file work with function in the function.js that creates the server and then responds to different requests.
+
 ## Setup Instructions
 clone repository
 
-npm run milestone-02
+npm start
 
 ## Documentation
 - First, use *npm run milestone-02* to open the web window.
