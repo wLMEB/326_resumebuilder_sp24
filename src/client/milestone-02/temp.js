@@ -6,7 +6,7 @@ import * as db from "./db.js";
 
 const content = document.getElementById("templateView");
 let selectedStyle = 1;
-export let selectedFields = [];
+//export let selectedFields = [];
 
 /**
  * This function called by other pages to render this page. It sets the innerHTML of the content element to a predefined string, adds a line break, clears the 'selectedFields' array, shows the information, and adds two buttons: "Back" and "Select".
@@ -17,9 +17,9 @@ export let selectedFields = [];
  * @returns {void} This function does not return anything.
  */
 function render(){ //render function called by other pages to render this page
-    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p><p>Information can also be modified below, changes are<b>this generation ONLY</b>unless the save button is pressed.</p>";
+    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p><p>Information can also be modified below, changes are<b>this generation ONLY</b>unless the update button is pressed.</p>";
     content.appendChild(document.createElement("br"));
-    selectedFields = [];
+   // selectedFields = [];
     let infoHeader = document.createElement('h3')
     infoHeader.innerText = "Choose your info"
     content.appendChild(infoHeader)
@@ -59,7 +59,7 @@ function addButton(name, page,ren){ // Generate button dynamically and set their
  * This asynchronous function creates an list, fetches all the information from the database, and for each piece of information, creates a list item with the field name and value, a delete button, and a select button.
  * 
  * The delete button, when clicked, deletes the field from the database and removes the list item.
- * The select button, when clicked, adds the field to the 'selectedFields' array if it is not already included.
+ * The select button, when clicked, adds the field to the client database and update on value if already existed.
  * 
  * @async
  * @returns {Promise<void>} A Promise that resolves when all the information has been fetched from the database and the list has been created.
@@ -96,7 +96,7 @@ async function showInformations() {
         });
         // console.log(response);
         input.value = await response.json();
-        console.log(input.value);
+        //console.log(input.value);
       }catch(err){
         console.log(err);
       }
@@ -112,24 +112,25 @@ async function showInformations() {
     deleteButton.addEventListener("click", async () => {
       try {
         //await db.deleteInfo(field._id);
-        try{
-          const response = await fetch(`/remove?fieldname=${field._id}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          
-        }catch(err){
-          console.log(err);
-        }
+        
+        const response = await fetch(`/remove?fieldname=${field._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         item.remove();
       } catch (err) {
         console.log(err);
       }
+      try{
+        await db.deleteInfo(field._id);
+      }catch(err){
+        //have nto been selected to font end, ignored
+      }
     });
     const editButton = document.createElement("button");
-    editButton.innerText = "save";
+    editButton.innerText = "update";
     editButton.addEventListener("click", async () => {
       try {
         //await db.update(field._id, document.getElementById(`${field._id}value`).value);
@@ -140,45 +141,62 @@ async function showInformations() {
             "Content-Type": "application/json",
           },
         });
-
-        for(let i of selectedFields){
-          if(i._id === field._id){
-            i.value = document.getElementById(`${field._id}value`).value;
-            //console.log(i.value)
-          }
-        }
       } catch (err) {
         console.log(err);
       }
+      try{
+        await db.updateInfo(field._id, document.getElementById(`${field._id}value`).value);
+      }catch(err){
+       // data not selected, ignored
+      } 
     
     });
     const selectButton = document.createElement("button");
     selectButton.innerText = "select";
-    selectButton.addEventListener("click", ()=>{
+    selectButton.addEventListener("click", async()=>{
       field.value = document.getElementById(`${field._id}value`).value;
-      if(!selectedFields.includes(field)){
-        selectedFields.push(field);
-        item.appendChild(deselectButton)
+      // if(!selectedFields.includes(field)){
+      //   selectedFields.push(field);
+      //   
+      // }
+      try{
+        await db.addInfo(field._id, document.getElementById(`${field._id}value`).value);
+      }catch(err){
+        await db.updateInfo(field._id, document.getElementById(`${field._id}value`).value);
       }
+      item.appendChild(deselectButton)
     })
     const deselectButton = document.createElement("button");
     deselectButton.innerText = "deselect";
-    deselectButton.addEventListener("click", ()=>{
-      if(selectedFields.includes(field)){
-        for(let i of selectedFields){
-          if(i._id === field._id){
-            i.value = document.getElementById(`${field._id}value`).value;
-            selectedFields.pop(i);
-            break;
-          }
+    deselectButton.addEventListener("click", async()=>{
+      //if(selectedFields.includes(field)){
+        // for(let i of selectedFields){
+        //   if(i._id === field._id){
+        //     i.value = document.getElementById(`${field._id}value`).value;
+        //     selectedFields.pop(i);
+        //     break;
+        //   }
+        // }
+        try{
+          await db.deleteInfo(field._id);
+        }catch(err){
+          console.log(err);
+          console.log("item doesn't exist in the database")
         }
         item.removeChild(deselectButton)
         
-      }
+      //}
     })
+    item.appendChild(document.createElement("br"));
     item.appendChild(editButton);
     item.appendChild(deleteButton);
     item.appendChild(selectButton);
+    try{
+      await db.getInfo(field._id);
+      item.appendChild(deselectButton);
+    }catch(err){
+      
+    } 
     
     list.appendChild(item);
   }
@@ -221,13 +239,14 @@ function showTemplate(){
 
 
 /**
+ * OBSOLETE FUNCTION
  * This function returns the 'selectedFields' array.
  * 
  * @returns {Array} The 'selectedFields' array.
  */
-function getSelectedFields() {
-  return selectedFields;
-}
+// function getSelectedFields() {
+//   return selectedFields;
+// }
 
 /**
  * This function returns the 'selectedStyle' variable.
@@ -237,4 +256,4 @@ function getSelectedFields() {
 function getSelectedStyle(){
     return selectedStyle;
 }
-export { render, getSelectedFields,getSelectedStyle };
+export { render,getSelectedStyle };

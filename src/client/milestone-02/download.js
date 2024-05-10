@@ -1,9 +1,10 @@
 import { navigate } from "./main.js";
-import { render as tempRender, getSelectedFields, getSelectedStyle } from "./temp.js";
+import { render as tempRender, getSelectedStyle } from "./temp.js";
 import { buildResume } from "./generator.js";
 import {getWindow} from "./generator.js";
+import * as db from './db.js';
 
-
+let selectedFields = [];
 const content = document.getElementById('downloadView');
 
 /**
@@ -24,7 +25,17 @@ function render(){ //render function called by other pages to render this page
     addButton("Download", "downloadView", ()=>{getWindow().print()});
 }
 
-/**
+async function getSelectedFields(){
+    try{
+        const selectedFields = await db.getAllInfo();
+        console.log("information that will be generated:");
+        console.log(selectedFields);
+        return selectedFields;
+    }catch (err){
+        console.error(err);
+    }
+    
+}/**
  * This function dynamically generates a button, sets its text, adds it to the content element, and sets its click event listener.
  * 
  * @param {string} name - The text that will be displayed on the button.

@@ -1,4 +1,4 @@
-import * as db from './db.js';
+
 let win = null;
 let resume = null;
 let types = ["Personal","Education","Experience","Other"];
@@ -10,8 +10,15 @@ let types = ["Personal","Education","Experience","Other"];
  * @returns {void} This function does not return anything.
  */
 
-function buildResume(fields,style){
-    console.log(fields);
+async function buildResume(promise,style){
+    // 
+    console.log(promise);
+    let fields = [];
+    try{
+        fields = await promise;
+    }catch(err){
+        console.log(err);
+    }
     win = window.open("", "_blank", "width=800 ,height=1000 ,top=100,left=100" )
     resume = win.document;
     let css = resume.createElement('link');
@@ -33,7 +40,7 @@ function buildResume(fields,style){
         resume.body.appendChild(group);
         group.appendChild(subHeader);
     })
-    fields.forEach(field =>{
+    for(let field of fields ){
        let type = field._id.split('-')[0];
         
         let group = resume.getElementById(type);
@@ -47,7 +54,7 @@ function buildResume(fields,style){
             group = resume.getElementById("Personal");
         }
         group.appendChild(data);
-    })
+    }
 }
 
 
