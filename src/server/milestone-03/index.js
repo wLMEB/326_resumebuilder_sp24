@@ -10,6 +10,14 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("src/client/milestone-02"));
+/**
+ * This asynchronous function is a middleware that handles methods not allowed by sending a 405 status code and a plain text message 'Method Not Allowed'.
+ * 
+ * @async
+ * @param {object} request - The request object.
+ * @param {object} response - The response object.
+ * @returns {Promise<void>} A Promise that resolves when the response has been sent.
+ */
 const MethodNotAllowedHandler = async (request, response) => {
     response.status(405).type('text/plain').send('Method Not Allowed'); // you should change this!
 };
