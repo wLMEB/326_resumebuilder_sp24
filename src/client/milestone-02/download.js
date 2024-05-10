@@ -25,6 +25,16 @@ function render(){ //render function called by other pages to render this page
     addButton("Download", "downloadView", ()=>{getWindow().print()});
 }
 
+/**
+ * This asynchronous function retrieves all information from the database.
+ * 
+ * If the operation is successful, it logs the retrieved information to the console and returns it.
+ * 
+ * If the operation fails, it logs the error to the console.
+ * 
+ * @async
+ * @returns {Promise<object>} A Promise that resolves with the retrieved information if the operation is successful, or undefined if the operation fails.
+ */
 async function getSelectedFields(){
     try{
         const selectedFields = await db.getAllInfo();
@@ -35,7 +45,9 @@ async function getSelectedFields(){
         console.error(err);
     }
     
-}/**
+}
+
+/**
  * This function dynamically generates a button, sets its text, adds it to the content element, and sets its click event listener.
  * 
  * @param {string} name - The text that will be displayed on the button.
