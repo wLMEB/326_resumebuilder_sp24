@@ -42,7 +42,7 @@ For src/server/milestone-03 folder we have:
 
 - functions.js: Provides a set of asynchronous functions for interacting with a database. This module depends on a db.js module for database operations. 
 
-- index.js: The file work with function in the function.js that creates the server and then responds to different requests.
+- index.js: This file work with function in the function.js that creates the server and then responds to different requests.
 
 ## Setup Instructions
 clone repository
