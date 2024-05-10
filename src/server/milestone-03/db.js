@@ -46,6 +46,16 @@ export async function deleteInfo(fieldname){
     await db.remove(doc);
 }
 
+/**
+ * This asynchronous function updates the value of a document in the database.
+ * 
+ * It first fetches the document with the given fieldname from the database, then updates the 'value' property of the document to the provided value, and finally puts the updated document back into the database.
+ * 
+ * @async
+ * @param {string} fieldname - The name of the field to update.
+ * @param {any} value - The new value to set for the field.
+ * @returns {Promise<void>} A Promise that resolves when the document has been updated in the database.
+ */
 export async function updateInfo(fieldname, value){
     
     const doc = await db.get(fieldname);
