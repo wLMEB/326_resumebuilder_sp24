@@ -1,7 +1,7 @@
 
 // import PouchDB from "pouchdb";
 
-const db = new PouchDB("counters");
+const db = new PouchDB("client");
 
 /**
  *  This asynchronously function adds a new information block to the database with the provided fieldname as the _id and the provided value as value.
@@ -46,7 +46,7 @@ export async function deleteInfo(fieldname){
     await db.remove(doc);
 }
 
-export async function update(fieldname, value){
+export async function updateInfo(fieldname, value){
     
     const doc = await db.get(fieldname);
     doc.value = value;

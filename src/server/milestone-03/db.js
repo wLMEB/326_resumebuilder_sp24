@@ -1,7 +1,7 @@
 
  import PouchDB from "pouchdb";
 
-const db = new PouchDB("counters");
+const db = new PouchDB("server");
 
 /**
  *  This asynchronously function adds a new information block to the database with the provided fieldname as the _id and the provided value as value.

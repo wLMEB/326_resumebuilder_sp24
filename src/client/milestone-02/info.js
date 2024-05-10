@@ -106,7 +106,7 @@ function fieldGen(fieldName) {
   content.appendChild(fieldLabel);
   content.appendChild(field);
   content.appendChild(document.createElement("br"));
-  console.log(type,fieldName);
+ // console.log(type,fieldName);
   field.id = `${type}-${fieldName}`;
   switch (fieldName) {
     case "Phone Number":
