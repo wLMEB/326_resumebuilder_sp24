@@ -6,70 +6,38 @@ import * as db from "./db.js";
 
 const content = document.getElementById("templateView");
 let selectedStyle = 1;
-//export let selectedFields = [];
 
-/**
- * This function called by other pages to render this page. It sets the innerHTML of the content element to a predefined string, adds a line break, clears the 'selectedFields' array, shows the information, and adds two buttons: "Back" and "Select".
- * 
- * The "Back" button navigates to the 'infoView' and calls the 'infoRender' function when clicked.
- * The "Select" button navigates to the 'downloadView' and calls the 'downloadRender' function when clicked.
- * 
- * @returns {void} This function does not return anything.
- */
-function render(){ //render function called by other pages to render this page
-    content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p><p>Information can also be modified below, changes are<b>this generation ONLY</b>unless the update button is pressed.</p>";
-    content.appendChild(document.createElement("br"));
-   // selectedFields = [];
-    let infoHeader = document.createElement('h3')
-    infoHeader.innerText = "Choose your info"
-    content.appendChild(infoHeader)
-    showInformations();
-    let tempHeader = document.createElement('h3')
-    tempHeader.innerText = "Choose your template"
-    content.appendChild(tempHeader)
-    showTemplate();
-    addButton("Back","infoView", infoRender);
-    addButton("Confirm", "downloadView", downloadRender);
-    
-
+async function render() {
+  content.innerHTML = "<h2>Select your information and a template!</h2><p>Choose what you want to be included in your resume by hitting the select buttons. We have several hand-crafted professional resume templates ready for you to choose! Simply select any one of them, and continue to finalize your resume.</p><p>Information can also be modified below, changes are<b>this generation ONLY</b>unless the update button is pressed.</p>";
+  content.appendChild(document.createElement("br"));
+  let infoHeader = document.createElement('h3')
+  infoHeader.innerText = "Choose your info"
+  content.appendChild(infoHeader)
+  await showInformations();
+  let tempHeader = document.createElement('h3')
+  tempHeader.innerText = "Choose your template"
+  content.appendChild(tempHeader)
+  showTemplate();
+  addButton("Back", "infoView", infoRender);
+  addButton("Confirm", "downloadView", downloadRender);
 }
 
-/**
- * This function dynamically generates a button, sets its text, adds it to the content element, and sets its click event listener.
- * 
- * @param {string} name - The text that will be displayed on the button.
- * @param {string} page - The page to navigate to when the button is clicked.
- * @param {Function} ren - The function to execute when the button is clicked.
- * @returns {void} This function does not return anything.
- */
-function addButton(name, page,ren){ // Generate button dynamically and set their event listeners
-    const button = document.createElement('button'); // to navigate to the requested page
-    button.classList.add("btn", "btn-outline-secondary");
-    button.innerText = `${name}`; 
-    content.appendChild(button);
-    button.addEventListener("click", () => {
-        
-        ren();
-        navigate(`${page}`);
-    });
-
+function addButton(name, page, ren) {
+  const button = document.createElement('button');
+  button.classList.add("btn", "btn-outline-secondary");
+  button.innerText = `${name}`;
+  content.appendChild(button);
+  button.addEventListener("click", () => {
+    ren();
+    navigate(`${page}`);
+  });
 }
 
-/**
- * This asynchronous function creates an list, fetches all the information from the database, and for each piece of information, creates a list item with the field name and value, a delete button, and a select button.
- * 
- * The delete button, when clicked, deletes the field from the database and removes the list item.
- * The select button, when clicked, adds the field to the client database and update on value if already existed.
- * 
- * @async
- * @returns {Promise<void>} A Promise that resolves when all the information has been fetched from the database and the list has been created.
- */
 async function showInformations() {
   const list = document.createElement("ol");
   content.appendChild(list);
   let allFields = null;
-  try{
-    //allFields = await db.getAllInfo();
+  try {
     const response = await fetch(`/displayAll`, {
       method: "GET",
       headers: {
@@ -78,7 +46,7 @@ async function showInformations() {
     });
     allFields = await response.json();
     console.log(allFields);
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
   for (let field of allFields) {
@@ -86,33 +54,26 @@ async function showInformations() {
     try {
       item.innerText = `${field._id}: `;
       const input = document.createElement("input");
-      // input.value =  `${await db.getInfo(field._id)}`;
-      try{
+      try {
         const response = await fetch(`/load?fieldname=${field._id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-        // console.log(response);
         input.value = await response.json();
-        //console.log(input.value);
-      }catch(err){
+      } catch (err) {
         console.log(err);
       }
-      
       input.id = `${field._id}value`;
       item.appendChild(input);
     } catch (err) {
-      //item.innerText = `${field}: `;
       continue;
     }
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "delete";
     deleteButton.addEventListener("click", async () => {
       try {
-        //await db.deleteInfo(field._id);
-        
         const response = await fetch(`/remove?fieldname=${field._id}`, {
           method: "DELETE",
           headers: {
@@ -123,18 +84,16 @@ async function showInformations() {
       } catch (err) {
         console.log(err);
       }
-      try{
+      try {
         await db.deleteInfo(field._id);
-      }catch(err){
-        //have nto been selected to font end, ignored
+      } catch (err) {
+        // have not been selected to front end, ignored
       }
     });
     const editButton = document.createElement("button");
     editButton.innerText = "update";
     editButton.addEventListener("click", async () => {
       try {
-        //await db.update(field._id, document.getElementById(`${field._id}value`).value);
-        
         const response = await fetch(`/update?fieldname=${field._id}&value=${document.getElementById(`${field._id}value`).value}`, {
           method: "PUT",
           headers: {
@@ -144,87 +103,65 @@ async function showInformations() {
       } catch (err) {
         console.log(err);
       }
-      try{
+      try {
         await db.updateInfo(field._id, document.getElementById(`${field._id}value`).value);
-      }catch(err){
-       // data not selected, ignored
-      } 
-    
+      } catch (err) {
+        // data not selected, ignored
+      }
     });
     const selectButton = document.createElement("button");
     selectButton.innerText = "select";
-    selectButton.addEventListener("click", async()=>{
+    selectButton.addEventListener("click", async () => {
       field.value = document.getElementById(`${field._id}value`).value;
-      // if(!selectedFields.includes(field)){
-      //   selectedFields.push(field);
-      //   
-      // }
-      try{
+      try {
         await db.addInfo(field._id, document.getElementById(`${field._id}value`).value);
-      }catch(err){
+      } catch (err) {
         await db.updateInfo(field._id, document.getElementById(`${field._id}value`).value);
       }
-      item.appendChild(deselectButton)
-    })
+      item.replaceChild(deselectButton, selectButton);
+    });
     const deselectButton = document.createElement("button");
     deselectButton.innerText = "deselect";
-    deselectButton.addEventListener("click", async()=>{
-      //if(selectedFields.includes(field)){
-        // for(let i of selectedFields){
-        //   if(i._id === field._id){
-        //     i.value = document.getElementById(`${field._id}value`).value;
-        //     selectedFields.pop(i);
-        //     break;
-        //   }
-        // }
-        try{
-          await db.deleteInfo(field._id);
-        }catch(err){
-          console.log(err);
-          console.log("item doesn't exist in the database")
-        }
-        item.removeChild(deselectButton)
-        
-      //}
-    })
+    deselectButton.addEventListener("click", async () => {
+      try {
+        await db.deleteInfo(field._id);
+      } catch (err) {
+        console.log(err);
+        console.log("item doesn't exist in the database")
+      }
+      item.replaceChild(selectButton, deselectButton);
+    });
     item.appendChild(document.createElement("br"));
     item.appendChild(editButton);
     item.appendChild(deleteButton);
-    item.appendChild(selectButton);
-    try{
+    
+    // Check if the field is already selected
+    try {
       await db.getInfo(field._id);
       item.appendChild(deselectButton);
-    }catch(err){
-      
-    } 
+    } catch (err) {
+      item.appendChild(selectButton);
+    }
     
     list.appendChild(item);
   }
 }
 
-/**
- * This function creates a container div and populates it with 2 templates. Each template consists of an image and a select button.
- * When clicked select button, it will sets the 'selectedStyle' variable to the id of the button and updates the text of the 'curSelect' element to reflect the current template selection.
- *
- * @returns {void} This function does not return anything.
- */
-function showTemplate(){
+function showTemplate() {
   let tempCount = 2;
   const container = document.createElement('div');
-  for(let i = 1; i<=tempCount; i++){
+  for (let i = 1; i <= tempCount; i++) {
     const temp = document.createElement('div')
     const t = document.createElement('img')
-    
     const tselect = document.createElement("button");
     tselect.id = i;
     tselect.innerText = "select";
-    tselect.addEventListener("click", ()=>{
-        selectedStyle = i;
-        document.getElementById("curSelect").innerText=`Current template selection: ${selectedStyle}`;
-        
-      })
+    tselect.addEventListener("click", () => {
+      selectedStyle = i;
+      document.getElementById("curSelect").innerText = `Current template selection: ${selectedStyle}`;
+    })
     t.src = `../assets/t${i}img.png`;
-    t.innerText="embed image here"
+    t.innerText = "embed image here"
     t.classList.add("templateImage")
     temp.appendChild(t);
     temp.appendChild(tselect)
@@ -237,23 +174,8 @@ function showTemplate(){
   container.appendChild(currentSelection)
 }
 
-
-/**
- * OBSOLETE FUNCTION
- * This function returns the 'selectedFields' array.
- * 
- * @returns {Array} The 'selectedFields' array.
- */
-// function getSelectedFields() {
-//   return selectedFields;
-// }
-
-/**
- * This function returns the 'selectedStyle' variable.
- * 
- * @returns {string} The 'selectedStyle' string.
- */
-function getSelectedStyle(){
-    return selectedStyle;
+function getSelectedStyle() {
+  return selectedStyle;
 }
-export { render,getSelectedStyle };
+
+export { render, getSelectedStyle };
