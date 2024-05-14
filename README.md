@@ -45,7 +45,7 @@ For src/server/milestone-03 folder we have:
 - index.js: This file work with function in the function.js that creates the server and then responds to different requests.
 
 ## Setup Instructions
-clone repository
+Clone this git repository to your local machine
 
 ## Documentation
 - First, run *npm start* from your clone directory.
