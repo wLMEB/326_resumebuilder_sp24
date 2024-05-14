@@ -49,6 +49,8 @@ clone repository
 
 npm start
 
+Navigate to http://localhost:3000/ from your browser
+
 ## Documentation
 - First, use *npm run milestone-02* to open the web window.
 - Second, in the main page we can click *Build resume* button to start building a resume or click *Access resume* to skip the input information page, directly start to build a resume with the information we submitted in the past.
