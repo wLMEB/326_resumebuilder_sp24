@@ -48,6 +48,7 @@ async function buildResume(promise,style){
             group = resume.getElementById("Experience")
         }
         let data = resume.createElement('div');
+        
         data.innerText = field.value;
         data.id = field._id.split('-')[1];
         if(data.id === "Name" || data.id === "Email" || data.id === "Phone Number"){
